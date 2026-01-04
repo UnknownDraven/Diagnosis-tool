@@ -1,7 +1,7 @@
 # Laptop Diagnostic Tool
 
 ## Overview
-The Used Laptop Diagnostic Tool is a comprehensive utility designed to assess the condition of used laptops before purchase. It performs a series of diagnostic checks to evaluate hardware, software, and security features, providing potential buyers with a detailed report on the laptop's status.
+The Diagnostic Tool is a comprehensive utility designed to assess the condition of used laptops before purchase. It performs a series of diagnostic checks to evaluate hardware, software, and security features, providing potential buyers with a detailed report on the laptop's status. Obviously it can be even used to just check info about your PC.
 
 ## Features
 - **BIOS Checks**: Verifies BIOS vendor, version, serial number, TPM presence, and secure boot status.
