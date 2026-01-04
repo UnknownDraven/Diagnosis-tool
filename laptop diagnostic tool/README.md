@@ -12,7 +12,7 @@ The Used Laptop Diagnostic Tool is a comprehensive utility designed to assess th
 
 ## Project Structure
 ```
-used-laptop-diagnostic-tool
+laptop-diagnostic-tool
 ├── src
 │   ├── main.py
 │   ├── constants.py
@@ -36,11 +36,11 @@ used-laptop-diagnostic-tool
 ## Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/used-laptop-diagnostic-tool.git
+   git clone https://github.com/UnknownDraven/Diagnosis-tool.git
    ```
 2. Navigate to the project directory:
    ```
-   cd used-laptop-diagnostic-tool
+   cd Diagosis-tool
    ```
 3. Install the required dependencies:
    ```
