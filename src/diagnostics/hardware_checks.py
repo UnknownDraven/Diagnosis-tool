@@ -63,7 +63,7 @@ def check_gpu(command_executor):
             "message": "No GPU detected",
             "severity": "DEAL_BREAKER"
         }
-
+"""
 def stress_cpu(command_executor, seconds=30):
     import psutil
     import threading
@@ -105,7 +105,62 @@ def stress_cpu(command_executor, seconds=30):
             "message": f"Max temp {max_temp}°C",
             "severity": "INFO"
         }
-    
+
+"""
+
+def stress_cpu(command_executor, seconds=30):
+    import psutil
+    import threading
+    import time
+    from utils.cpu_temperature import get_cpu_temperatures
+
+    def load():
+        end = time.time() + seconds
+        while time.time() < end:
+            sum(i * i for i in range(10000))
+
+    threads = []
+    for _ in range(psutil.cpu_count(logical=True)):
+        t = threading.Thread(target=load)
+        t.start()
+        threads.append(t)
+
+    max_temp = None
+
+    for _ in range(seconds // 2):
+        time.sleep(2)
+
+        temps = get_cpu_temperatures()
+        if temps:
+            current_max = max(temps)
+            max_temp = current_max if max_temp is None else max(max_temp, current_max)
+
+    for t in threads:
+        t.join()
+
+    if max_temp is None:
+        return {
+            "name": "CPU Stress",
+            "status": "PASS",
+            "message": "Stress completed (temperature not exposed by firmware)",
+            "severity": "INFO"
+        }
+
+    if max_temp > 95:
+        return {
+            "name": "CPU Stress",
+            "status": "FAIL",
+            "message": f"Overheating ({max_temp:.1f}°C)",
+            "severity": "DEAL_BREAKER"
+        }
+
+    return {
+        "name": "CPU Stress",
+        "status": "PASS",
+        "message": f"Max temp {max_temp:.1f}°C",
+        "severity": "INFO"
+    }
+
 def perform_hardware_checks(executor):
     results = []
     results.append(check_cpu(executor))

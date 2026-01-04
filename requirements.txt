@@ -1,3 +1,5 @@
 psutil
 jsonschema
 argparse
+wmi
+pywin32
